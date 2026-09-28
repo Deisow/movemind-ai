@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoveMind AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="page">
+        <section class="hero">
+            <div>
+                <p class="eyebrow">AI Halsocoach</p>
+                <h1>MoveMind AI</h1>
+                <p class="intro">
+                    Fa enkla tips for rorelse, vardagshalsa och motivation med hjalp av AI.
+                </p>
+            </div>
+        </section>
+
+        <section class="app-panel">
+            <form method="POST" class="health-form">
+                <label>
+                    Alder
+                    <input type="number" name="age" min="10" max="100" placeholder="Exempel: 45" required>
+                </label>
+
+                <label>
+                    Vad ar ditt mal?
+                    <textarea name="goal" rows="3" placeholder="Exempel: Jag vill rora mig mer och minska stress" required></textarea>
+                </label>
+
+                <label>
+                    Aktivitetsniva
+                    <select name="activity_level" required>
+                        <option value="">Valj niva</option>
+                        <option value="Låg">Lag - jag ror mig lite</option>
+                        <option value="Medel">Medel - jag promenerar eller tranar ibland</option>
+                        <option value="Hög">Hog - jag tranar ofta</option>
+                    </select>
+                </label>
+
+                <label>
+                    Begransningar eller smarta
+                    <textarea name="limitations" rows="3" placeholder="Exempel: ont i ryggen, knaproblem eller inga"></textarea>
+                </label>
+
+                <button type="submit">Skapa AI-plan</button>
+            </form>
+
+            <div class="result">
+                {% if error %}
+                    <div class="message error">{{ error }}</div>
+                {% endif %}
+
+                {% if plan %}
+                    <h2>Din AI-plan</h2>
+                    <pre>{{ plan }}</pre>
+                {% else %}
+                    <h2>Resultat</h2>
+                    <p>Fyll i formularet och klicka pa knappen. AI skapar en enkel halsoplan.</p>
+                {% endif %}
+
+                <p class="warning">
+                    Viktigt: MoveMind AI ersatter inte lakare eller sjukvard. Vid stark smarta,
+                    sjukdom eller akuta problem ska du kontakta vard.
+                </p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
